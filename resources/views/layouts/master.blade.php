@@ -14,6 +14,14 @@
     } elseif (isset($job)) {
         $seo = $job;
     }
+    
+    $about_link = App\Models\Navigation::find(2553)->childs;
+    $home_program = App\Models\Navigation::query()
+        ->where('page_type', 'Our Program')
+        ->orderBy('position', 'ASC')
+        ->take(3)
+        ->get();
+    
 @endphp
 
 <!DOCTYPE html>
@@ -84,22 +92,23 @@
                         <div class="col-md-7 col-12">
                             <div class="header-topinfo">
                                 <ul>
-                                    <li><a href="tel:014536004"><i class="fa fa-phone"></i> +977 01-4536004</a></li>
-                                    <li><a href="mailto:globalinternship.np@gmail.com"><i class="fa fa-envelope-o"></i>
-                                            globalinternship.np@gmail.com</a></li>
+                                    <li><a href="#"><i class="fa fa-phone"></i>
+                                            {{ $global_setting->phone }}</a></li>
+                                    <li><a href="mailto:{{ $global_setting->site_email }}"><i
+                                                class="fa fa-envelope-o"></i>
+                                            {{ $global_setting->site_email }}</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-5 col-12">
                             <div class="footer-copyrightsocial">
                                 <ul>
-                                    <li><a href="https://twitter.com/home" data-toggle="tooltip" title="Twitter"
+                                    <li><a href="{{ $global_setting->twitter }}" data-toggle="tooltip" title="Twitter"
                                             target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="https://www.facebook.com/" data-toggle="tooltip" title="Facebook"
-                                            target="_blank"><i class="fa fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.instagram.com/" data-toggle="tooltip" title="Instagram"
-                                            target="_blank"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="https://www.youtube.com/" data-toggle="tooltip" title="Youtube"
+                                    <li><a href="{{ $global_setting->facebook }}" data-toggle="tooltip"
+                                            title="Facebook" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+
+                                    <li><a href="{{ $global_setting->linkedin }}" data-toggle="tooltip" title="Youtube"
                                             target="_blank"><i class="fa fa-youtube"></i></a></li>
                                 </ul>
                             </div>
@@ -114,20 +123,21 @@
                 <div class="container">
                     <div class="header-bottominner">
                         <div class="header-logo">
-                            <a href="index.html">
-                                <img src="/website/images/logo.png" alt="Global Internship Gateway">
+                            <a href="/">
+                                <img src="{{ '/uploads/icons/' . $global_setting->site_logo }}"
+                                    alt="Global Internship Gateway">
                             </a>
                         </div>
                         <nav class="tm-navigation">
 
 
                             <ul>
-                                <li @if (!isset($slug_detail))  @endif><a href="/">Home</a></li>
+                                <li><a href="/">Home</a></li>
 
                                 @foreach ($menus as $menu)
                                     @php $submenus = $menu->childs; @endphp
                                     <li class="tm-navigation-dropdown" @if (isset($slug_detail) && $slug_detail->nav_name == $menu->nav_name)  @endif><a
-                                            @if ($submenus->count() > 0) href="{{ route('category', $menu->nav_name) }}" @else href="  
+                                            @if ($submenus->count() > 0) href="#" @else href="  
                                     {{ route('category', $menu->nav_name) }}" @endif>{{ $menu->caption }}</a>
                                         @if ($submenus->count() > 0)
                                             <ul>
@@ -168,6 +178,114 @@
 
         @yield('content')
 
+
+
+        <div class="footer fixed-footer">
+
+            <!-- Footer Widgets Area -->
+            <div class="footer-toparea tm-padding-section" data-bgimage="/website/images/bg/footer-bg.jpg"
+                data-overlay="2">
+                <div class="container">
+                    <div class="row widgets footer-widgets">
+
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget (Widget Info) -->
+                            <div class="single-widget widget-info">
+                                <a href="/" class="widget-info-logo">
+                                    <img src="{{ '/uploads/icons/' . $global_setting->site_logo_nepali }}"
+                                        alt="footer logo">
+                                </a>
+                                <p> {!! $global_setting->page_description !!}</p>
+                            </div>
+                            <!--// Single Widget (Widget Info) -->
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget (Widget Contact) -->
+                            <div class="single-widget widget-quicklinks">
+                                <h5 class="widget-title">Quick Links</h5>
+                                <ul>
+                                    @foreach ($about_link as $item)
+                                        <li><a href="/about-us/{{ $item->nav_name }}">{{ $item->caption }}</a></li>
+                                    @endforeach
+                                    <li><a href="/contact/">Contact</a></li>
+
+                                </ul>
+                            </div>
+                            <!--// Single Widget (Widget Contact) -->
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget (Widget Blog) -->
+                            <div class="single-widget widget-quicklinks">
+                                <h5 class="widget-title">Our Program</h5>
+                                <ul>
+                                    @foreach ($home_program as $item)
+                                        <li><a href="/detail/{{ $item->nav_name }}">{{ $item->caption }}</a></li>
+                                    @endforeach
+
+
+                                </ul>
+                            </div>
+                            <!--// Single Widget (Widget Blog) -->
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget (Widget Newsletter) -->
+                            <div class="single-widget widget-contact">
+                                <h5 class="widget-title">Get In Touch</h5>
+                                <ul>
+                                    <li><i class="flaticon-mail"></i><a
+                                            href="mailto:{{ $global_setting->site_email }}">{{ $global_setting->site_email }}</a>
+                                    </li>
+                                    <li><i class="flaticon-phone"></i><a
+                                            href="tel:{{ $global_setting->phone }}">+{{ $global_setting->phone }}</a>
+                                    </li>
+                                    <li><i class="flaticon-pin"></i><a href="#">
+                                            {{ $global_setting->website_full_address }}
+                                            {{ $global_setting->address_ne }}</a> </li>
+                                </ul>
+                            </div>
+                            <!--// Single Widget (Widget Newsletter) -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--// Footer Widgets Area -->
+
+            <!-- Footer Copyright Area -->
+            <div class="footer-copyrightarea">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-8 col-12">
+                            <p class="footer-copyright">Copyright ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> Global Internship Gateway All Rights Reserved. Developed By <a
+                                    href="http://radiantnepal.com/" target="_blank">Radiant Infotech Nepal</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="footer-copyrightsocial">
+                                <ul>
+                                    <li><a href="{{ $global_setting->twitter }}" data-toggle="tooltip"
+                                            title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="{{ $global_setting->facebook }}" data-toggle="tooltip"
+                                            title="Facebook" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                                    </li>
+
+                                    <li><a href="{{ $global_setting->linkedin }}" data-toggle="tooltip"
+                                            title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--// Footer Copyright Area -->
+
+        </div>
 
 
     </div>

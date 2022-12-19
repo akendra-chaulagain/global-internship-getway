@@ -1,8 +1,12 @@
+@php
+    $home_client = App\Models\Navigation::all()->where('page_type', 'Client');
+@endphp
+
 <!-- Brandlogo Area -->
 <div class="tm-section brand-logo-area bg-grey tm-padding-section">
     <div class="container">
         <div class="brandlogo-slider tm-slider-arrow tm-slider-arrow-hovervisible">
-            @foreach ($partners as $item)
+            @foreach ($home_client as $item)
                 <div class="brandlogo">
                     <a href="#">
                         <img src="{{ $item->banner_image }}" alt="brand-logo">

@@ -62,13 +62,13 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="Twitter">Twitter Url</label>
+                    <label for="Twitter">Twitter link</label>
                     <input type="text" id="page_keyword" name="twitter" class="form-control" placeholder="Twitter"
                         value="{{ $global_setting->twitter }}">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="LinkedIn">LinkedIn url</label>
+                    <label for="LinkedIn">YouTube  link</label>
                     <input type="text" id="LinkedIn" name="linkedin" class="form-control" placeholder="LinkedIn"
                         value="{{ $global_setting->linkedin }}">
                 </div>

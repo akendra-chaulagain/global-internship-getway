@@ -1,34 +1,62 @@
-
-
 @extends('layouts.master')
 
 @push('title')
-    {{ $client->caption }}
+    {{ $Client_category->caption }}
 @endpush
 
 
 @section('content')
-    <section id="pageCover" class="row aboutUs">
-        <div class="row pageTitle">{{ $client->caption }}</div>
-        <div class="row pageBreadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li class="active">{{ $client->caption }}</li>
-            </ol>
+    <div class="tm-breadcrumb-area tm-padding-section text-center" data-overlay="1" data-bgimage="images/bg-breadcrumb.jpg">
+        <div class="container">
+            <div class="tm-breadcrumb">
+                <h2 class="tm-breadcrumb-title"> {{ $Client_category->caption }}</h2>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li>About</li>
+                </ul>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <section class="partner">
+    <main class="main-content">
+
+        {{-- client page --}}
         <div class="container">
             <div class="row">
-                @foreach ($client_breed as $client_breed_item)
-                    <div class="col-md-3 col-sm-4">
-                        <div class="item"><img src="{{ $client_breed_item->banner_image ?? ' ' }}" alt=""></div>
-                    </div>
+                @foreach ($Clients as $item)
+                   
+                        <div class="col-md-3">
+                            <img src="{{ $item->banner_image }}" alt="">
+                        </div>
                 @endforeach
 
 
             </div>
         </div>
-    </section>
+
+
+
+
+
+
+        <!-- Call To Action Area -->
+        <div class="tm-section call-to-action-area bg-theme">
+            <div class="container">
+                <div class="row align-items-center tm-cta">
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <div class="tm-cta-content">
+                            <h3>Are you worried about abroad internship?</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <div class="tm-cta-button">
+                            <a href="/contact" class="tm-button tm-button-white">Contact Us <b></b></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--// Call To Action Area -->
+
+    </main>
 @endsection

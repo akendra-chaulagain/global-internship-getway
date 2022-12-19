@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-7">
                         <div class="tm-about-content">
-                            <h2>About Us</h2>
+                            <h2> {!! $normal->short_content !!}</h2>
                             <span class="divider"><i class="fa fa-superpowers"></i></span>
                             <p>
                                 {!! str_limit($normal->long_content, 600, '...') !!}

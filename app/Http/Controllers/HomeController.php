@@ -343,12 +343,31 @@ class HomeController extends Controller
         } elseif ($subcategory_type == "Video Gallery") {
             $photos = NavigationVideoItems::where('navigation_id', $subcategory_id)->get();
             return view("website.video_gallery")->with(["partners" => $partners, 'photos' => $photos, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail]);
-        } elseif ($subcategory_type == "Job") {
-            $job_category = Navigation::find($subcategory_id);
-            $jobs = Navigation::find($subcategory_id)->childs;
+        } elseif ($subcategory_type == "Team") {
+            $Team_category = Navigation::find($subcategory_id);
+            $Teams = Navigation::find($subcategory_id)->childs;
+            // return $Teams;
+            return view("website.team_member")->with(["partners" => $partners, 'Teams' => $Teams, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "Team_category" => $Team_category, "Teams" => $Teams]);
 
-            return view("website.job-list")->with(["partners" => $partners, 'jobs' => $jobs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "job_category" => $job_category, "jobs" => $jobs]);
-        } elseif ($subcategory_type == "Notice") {
+
+        } elseif ($subcategory_type == "Client") {
+            $Client_category = Navigation::find($subcategory_id);
+            $Clients = Navigation::find($subcategory_id)->client_childs;
+            // return $Clients;
+            return view("website.clients")->with(["partners" => $partners, 'Clients' => $Clients, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "Client_category" => $Client_category, "Clients" => $Clients]);
+        
+
+
+         } elseif ($subcategory_type == "Our Program") {
+            $program_category = Navigation::find($subcategory_id);
+            $programs = Navigation::find($subcategory_id)->childs;
+            // return $programs;
+            return view("website.our_program")->with(["partners" => $partners, 'programs' => $programs, 'menus' => $menus, 'sliders' => $sliders, 'about' => $About, 'global_setting' => $global_setting, 'slug_detail' => $slug_detail, "program_category" => $program_category, "programs" => $programs]);
+        }
+
+
+        
+        elseif ($subcategory_type == "Notice") {
             // return "return to view Notice";
             $notices = Navigation::query()->where('parent_page_id', $subcategory_id)->where('page_type', 'Notice')->latest()->get();
             $notice_heading = Navigation::find($subcategory_id);
@@ -366,7 +385,8 @@ class HomeController extends Controller
     }
     public function singlePage($slug)
     {
-        $job = Navigation::all()->where('nav_name', $slug)->first();
+        $program_details = Navigation::all()->where('nav_name', $slug)->first();
+        // return $program_details;
         if (Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%partner%")->where('page_type', 'Group')->latest()->first() != null) {
             $partners_id = Navigation::query()->where('nav_category', 'Home')->where('nav_name', 'LIKE', "%partner%")->where('page_type', 'Group')->latest()->first()->id;
             $partners = Navigation::query()->where('parent_page_id', $partners_id)->latest()->get();
@@ -375,8 +395,8 @@ class HomeController extends Controller
             $partners = null;
         }
         $global_setting = GlobalSetting::all()->first();
-        $menus = Navigation::query()->where('nav_category', 'Main')->where('page_type', '!=', 'Job')->where('page_type', '!=', 'Photo Gallery')->where('page_type', '!=', 'Notice')->where('parent_page_id', 0)->where('page_status', '1')->orderBy('position', 'ASC')->get();
-        return view("website.job_detail_single_page")->with(["partners" => $partners, 'job' => $job, 'menus' => $menus, 'global_setting' => $global_setting]);
+        $menus = Navigation::query()->where('nav_category', 'Main')->where('page_type', '!=', 'program_details')->where('page_type', '!=', 'Photo Gallery')->where('page_type', '!=', 'Notice')->where('parent_page_id', 0)->where('page_status', '1')->orderBy('position', 'ASC')->get();
+        return view("website.program_detail")->with(["partners" => $partners, 'program_details' => $program_details, 'menus' => $menus, 'global_setting' => $global_setting]);
     }
 
 
