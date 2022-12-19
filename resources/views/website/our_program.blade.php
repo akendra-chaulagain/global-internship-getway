@@ -1,16 +1,23 @@
+@php
+    $breed = App\Models\Navigation::find($program_category->parent_page_id);
+@endphp
+
+
+
+
 @extends('layouts.master')
 @push('title')
     {{ $program_category->caption }}
 @endpush
 @section('content')
-    <!-- Breadcrumb Area -->
     <div class="tm-breadcrumb-area tm-padding-section text-center" data-overlay="1" data-bgimage="images/bg-breadcrumb.jpg">
         <div class="container">
             <div class="tm-breadcrumb">
                 <h2 class="tm-breadcrumb-title"> {{ $program_category->caption }}</h2>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Our Program</li>
+                    <li><a href="/">Home</a></li>
+                    <li>{{ $breed->caption }}</li>
+                    <li>{{ $program_category->caption }}</li>
                 </ul>
             </div>
         </div>
@@ -37,7 +44,8 @@
                                     </ul>
                                 </div>
                                 <div class="tm-portfolio-content">
-                                    <h5><a href="/detail/{{ $programs_item->nav_name }}">{{ $programs_item->caption }}</a></h5>
+                                    <h5><a href="/detail/{{ $programs_item->nav_name }}">{{ $programs_item->caption }}</a>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +68,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="tm-cta-button">
-                            <a href="#" class="tm-button tm-button-white">Contact Us <b></b></a>
+                            <a href="/contact" class="tm-button tm-button-white">Contact Us <b></b></a>
                         </div>
                     </div>
                 </div>

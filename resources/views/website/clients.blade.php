@@ -1,3 +1,8 @@
+@php
+    $breed = App\Models\Navigation::find($Client_category->parent_page_id);
+    
+@endphp
+
 @extends('layouts.master')
 
 @push('title')
@@ -12,7 +17,9 @@
                 <h2 class="tm-breadcrumb-title"> {{ $Client_category->caption }}</h2>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li>About</li>
+
+                    <li>{{ $breed->caption }}</li>
+                    <li> {{ $Client_category->caption }}</li>
                 </ul>
             </div>
         </div>
@@ -24,10 +31,9 @@
         <div class="container">
             <div class="row">
                 @foreach ($Clients as $item)
-                   
-                        <div class="col-md-3">
-                            <img src="{{ $item->banner_image }}" alt="">
-                        </div>
+                    <div class="col-md-3">
+                        <img src="{{ $item->banner_image }}" alt="">
+                    </div>
                 @endforeach
 
 

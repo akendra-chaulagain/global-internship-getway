@@ -1,4 +1,6 @@
-
+@php
+    $about_breed = App\Models\Navigation::find(2554);
+@endphp
 <main class="page-content">
     <div class="tm-section about-us-area bg-white tm-padding-section">
         <div class="container">
@@ -13,7 +15,7 @@
                         <h2>{{ $about->caption }}</h2>
                         <span class="divider"><i class="fa fa-superpowers"></i></span>
                         <p>{!! $about->short_content !!}</p>
-                        <a href="about-us.html" class="tm-button">Read More <b></b></a>
+                        <a href="/about-us/{{ $about_breed->nav_name }}" class="tm-button">Read More <b></b></a>
                     </div>
                 </div>
             </div>

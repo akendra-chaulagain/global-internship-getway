@@ -1,8 +1,6 @@
 @php
     $breed = App\Models\Navigation::find($normal->parent_page_id);
-    $global_setting = app\Models\GlobalSetting::all()->first();
-    $side_bar = App\Models\Navigation::find($normal->parent_page_id)->childs;
-    
+   
 @endphp
 
 
@@ -14,10 +12,11 @@
     <div class="tm-breadcrumb-area tm-padding-section text-center" data-overlay="1" data-bgimage="images/bg-breadcrumb.jpg">
         <div class="container">
             <div class="tm-breadcrumb">
-                <h2 class="tm-breadcrumb-title">About Us</h2>
+                <h2 class="tm-breadcrumb-title">  {{ $normal->caption }}</h2>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li>About</li>
+                    <li><a href="/">Home</a></li>
+                    <li>{{ $breed->caption }}</li>
+                    <li> {{ $normal->caption }}</li>
                 </ul>
             </div>
         </div>

@@ -1,3 +1,9 @@
+@php
+      $breed = App\Models\Navigation::find($Team_category->parent_page_id);
+   
+@endphp
+
+
 @extends('layouts.master')
 @push('title')
     {{ $Team_category->caption }}
@@ -7,10 +13,11 @@
     <div class="tm-breadcrumb-area tm-padding-section text-center" data-overlay="1" data-bgimage="images/bg-breadcrumb.jpg">
         <div class="container">
             <div class="tm-breadcrumb">
-                <h2 class="tm-breadcrumb-title">Our Team</h2>
+                <h2 class="tm-breadcrumb-title">{{ $Team_category->caption }}</h2>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Our Team</li>
+                    <li><a href="/">Home</a></li>
+                    <li>{{ $breed->caption }}</li>
+                    <li>{{ $Team_category->caption }}</li>
                 </ul>
             </div>
         </div>
