@@ -1,5 +1,5 @@
  <div class="tm-section testimonial-area tm-padding-section tm-parallax" data-overlay="9"
-     data-bgimage="images/bg/bg-image-2.jpg">
+     data-bgimage="/website/images/bg/bg-image-2.jpg">
      <div class="container">
          <div class="row justify-content-center">
              <div class="col-xl-6 col-lg-7 col-md-10 col-12">

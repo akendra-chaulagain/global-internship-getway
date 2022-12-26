@@ -1,6 +1,6 @@
 
 
-<div class="tm-section funfact-area tm-padding-section tm-parallax" data-bgimage="images/bg-image-1.jpeg" data-overlay="9">
+<div class="tm-section funfact-area tm-padding-section tm-parallax" data-bgimage="/website/images/bg-image-1.jpeg" data-overlay="9">
     <div class="container">
         <div class="row tm-funfact-wrapper">
 

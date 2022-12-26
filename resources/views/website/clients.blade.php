@@ -11,7 +11,7 @@
 
 
 @section('content')
-    <div class="tm-breadcrumb-area tm-padding-section text-center" data-overlay="1" data-bgimage="images/bg-breadcrumb.jpg">
+    <div class="tm-breadcrumb-area tm-padding-section text-center" data-overlay="1" data-bgimage="/website/images/bg-breadcrumb.jpg">
         <div class="container">
             <div class="tm-breadcrumb">
                 <h2 class="tm-breadcrumb-title"> {{ $Client_category->caption }}</h2>

@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-offset-4 col-md-4">
             <br/>
-            <p style="text-align: center;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> | All rights reserved <br> |  Blue Ocean Overseas Pvt. Ltd  | <br><a href="https://radiantnepal.com" target="_blank">Radiant InfoTech Nepal</a></p>
+            <p style="text-align: center;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> | All rights reserved <br> |  Global Internship Gateway  | <br><a href="https://radiantnepal.com" target="_blank">Radiant InfoTech Nepal</a></p>
         </div>
     </div>
 </div>
